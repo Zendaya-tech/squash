@@ -1,12 +1,13 @@
 ---
 name: Bug report
-about: Something is not working as expected
-labels: 
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
-**Before you start**
-Please take a look at the [FAQ](https://github.com/GoogleChromeLabs/squoosh/wiki/FAQ) as well as the already opened issues! If nothing fits your problem, go ahead and fill out the following template:
+Please take a look at the [FAQ](https://github.com/Zendaya-tech/squash/wiki/FAQ) as well as the already opened issues! If nothing fits your problem, go ahead and fill out the following template:
 
 **Describe the bug**
 A clear and concise description of what the bug is.
@@ -21,16 +22,14 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Version:**
- - OS w/ version: [e.g. iOS 12]
- - Browser w/ version [e.g. Chrome 70]
- - Node version: [e.g. 10.11.0]
- - npm version: [e.g. 6.4.1]
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
 
-**Is your issue related to the quality of image compression?**
-Please attach original and output images (you can drag & drop to attach). 
-- Original image 
-- Output image from Squoosh
+**Please complete the following information:**
+ - OS: [e.g. Windows 10, macOS 10.14, Ubuntu 18.04]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
+ - Output image from Squash
 
-**Additional context, screenshots, screencasts**
+**Additional context**
 Add any other context about the problem here.
