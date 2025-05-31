@@ -46,7 +46,7 @@ const demos = [
   {
     description: 'SVG icon',
     size: '13KB',
-    filename: 'squoosh.svg',
+    filename: 'squash.svg',
     url: logo,
     iconUrl: logoIcon,
   },
@@ -70,7 +70,7 @@ async function getImageClipboardItem(
 }
 
 interface Props {
-  onFile?: (file: File) => void;
+  onFiles?: (file: File[]) => void;
   showSnack?: SnackBarElement['showSnackbar'];
 }
 interface State {
@@ -119,10 +119,16 @@ export default class Intro extends Component<Props, State> {
 
   private onFileChange = (event: Event): void => {
     const fileInput = event.target as HTMLInputElement;
-    const file = fileInput.files && fileInput.files[0];
-    if (!file) return;
-    this.fileInput!.value = '';
-    this.props.onFile!(file);
+    try {
+      if (!fileInput.files) return;
+      const files = [...fileInput.files];
+      this.props.onFiles!(files);
+    } catch (e) {
+      console.error(`Something went wrong while picking files: ${e}`);
+      return;
+    } finally {
+      this.fileInput!.value = '';
+    }
   };
 
   private onOpenClick = () => {
@@ -135,7 +141,7 @@ export default class Intro extends Component<Props, State> {
       const demo = demos[index];
       const blob = await fetch(demo.url).then((r) => r.blob());
       const file = new File([blob], demo.filename, { type: blob.type });
-      this.props.onFile!(file);
+      this.props.onFiles!([file]);
     } catch (err) {
       this.setState({ fetchingDemoIndex: undefined });
       this.props.showSnack!("Couldn't fetch demo image");
@@ -218,7 +224,7 @@ export default class Intro extends Component<Props, State> {
       return;
     }
 
-    this.props.onFile!(new File([blob], 'image.unknown'));
+    this.props.onFiles!([new File([blob], 'image.unknown')]);
   };
 
   render(
@@ -231,6 +237,7 @@ export default class Intro extends Component<Props, State> {
           class={style.hide}
           ref={linkRef(this, 'fileInput')}
           type="file"
+          multiple
           onChange={this.onFileChange}
         />
         <div class={style.main}>
@@ -244,7 +251,7 @@ export default class Intro extends Component<Props, State> {
             <img
               class={style.logo}
               src={logoWithText}
-              alt="Squoosh"
+              alt="Squash"
               width="539"
               height="162"
             />
@@ -357,7 +364,7 @@ export default class Intro extends Component<Props, State> {
                 <div class={style.infoTextWrapper}>
                   <h2 class={style.infoTitle}>Small</h2>
                   <p class={style.infoCaption}>
-                    Smaller images mean faster load times. Squoosh can reduce
+                    Smaller images mean faster load times. Squash can reduce
                     file size and maintain high quality.
                   </p>
                 </div>
@@ -409,7 +416,7 @@ export default class Intro extends Component<Props, State> {
                   <h2 class={style.infoTitle}>Secure</h2>
                   <p class={style.infoCaption}>
                     Worried about privacy? Images never leave your device since
-                    Squoosh does all the work locally.
+                    Squash does all the work locally.
                   </p>
                 </div>
                 <div class={style.infoImgWrapper}>
@@ -438,13 +445,24 @@ export default class Intro extends Component<Props, State> {
               <footer class={style.footerItems}>
                 <a
                   class={style.footerLink}
-                  href="https://github.com/GoogleChromeLabs/squoosh/blob/dev/README.md#privacy"
+                  href="https://github.com/Zendaya-tech/squash/blob/dev/README.md#privacy"
                 >
                   Privacy
                 </a>
                 <a
                   class={style.footerLinkWithLogo}
-                  href="https://github.com/GoogleChromeLabs/squoosh"
+                  href="https://play.google.com/store/apps/details?id=com.zendayatech.squash"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                  </svg>
+                  Get on Play Store
+                </a>
+                <a
+                  class={style.footerLinkWithLogo}
+                  href="https://github.com/Zendaya-tech/squash"
                 >
                   <img src={githubLogo} alt="" width="10" height="10" />
                   Source on Github

@@ -4,10 +4,10 @@ html {
   --white: #fff;
   --black: #000;
   --off-black: #1d1d1d;
-  --blue: #5fb4e4;
-  --dim-blue: #0a7bcc;
-  --deep-blue: #09f;
-  --light-blue: #76c8ff;
+  --blue: #9b5fe4;
+  --dim-blue: #7a0acc;
+  --deep-blue: #9009f4;
+  --light-blue: #c876ff;
   --less-light-gray: #bcbcbc;
   --medium-light-gray: #d1d1d1;
   --light-gray: #eaeaea;
@@ -16,7 +16,7 @@ html {
   --dark-text: #142630;
 
   /* Old stuff: */
-  --button-fg: rgb(95, 180, 228);
+  --button-fg: rgb(155, 95, 228);
 }
 
 @media (dynamic-range: high) {
@@ -24,8 +24,8 @@ html {
     html {
       --pink: oklch(75% 0.3 3);
       --hot-pink: oklch(65% 0.3 3);
-      --blue: oklch(75% 0.3 248);
-      --deep-blue: oklch(65% 0.3 248);
+      --blue: oklch(75% 0.3 280);
+      --deep-blue: oklch(65% 0.3 280);
     }
   }
 }
